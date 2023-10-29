@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CoA-CIGAS to ITMIS</title>
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  <style>
+    body {
+      font-family: Lexend;
+    }
+
+    .containercigas {
+      display: flex;
+      padding-left: 5%;
+      padding-top: 2%;
+      background-color: #ffffff;
+    }
+
+    .containercigassub {
+      display: flex;
+      padding-left: 5%;
+      padding-top: 0.1%;
+      background-color: #ffffff ;
+    }
+
+    .containeritmis {
+      display: flex;
+      padding-left: 5%;
+      padding-top: 2%;
+      background-color: #ffffff ;
+    }
+
+    .container {
+      display: flex;
+      padding-left: 5%;
+      padding-top: 2%;
+      background-color: #ffffff;
+    }
+
+
+    .input-container {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: center;
+    }
+
+    .labelexp {
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      font-size: 25px;
+      color: #1863d0;
+    }
+
+     .labeltopic {
+      font-weight: bold;
+      display: block;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border: 2px solid  #FBBA30 ;
+      border-radius: 3px;
+      width: 100px;
+    }
+
+    textarea[type="text"] {
+      padding: 5px;
+      border: 2px solid #0893D0 ;
+      border-radius: 3px;
+    }
+
+     .textareafinal[type="text"] {
+      padding: 5px;
+      border: 2px solid #06B92F  ;
+      border-radius: 3px;
+    }
+
+    button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+    .buttoncpy {
+            padding: 5px 10px;
+            background-color: #06B92F;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+  </style>
+</head>
+<body>
+
+<div class="containercigas">
+  <label class="labelexp">Revenue Code</label>
+  </div>
+
+
+  <div class="containercigas">
+  <label class="labeltopic">CIGAS Code</label>
+  </div>
+
+  <div class="containercigas">
+    <div class="input-container">
+      <label>Head</label>
+      <input type="text" id="input9" maxlength="3" placeholder="In 3 digit">
+    </div>
+  
+  &nbsp;<p style="font-size:20px">--</p>&nbsp;
+  
+    <div class="input-container">
+      <label>Revenue Code</label>
+      <input type="text" id="input10" maxlength="4" placeholder="In 4 digit">&nbsp;.&nbsp;
+      <input type="text" id="input11" maxlength="2" placeholder="In 2 digit">&nbsp;.&nbsp;
+      <input type="text" id="input12" maxlength="2" placeholder="In 2 digit">
+    </div>
+
+  </div>
+  <div class="containercigassub">
+    <div class="input-container">
+        <label>Mid/Sub Office</label>
+        <input type="text" id="input13"  value="0000" maxlength="4">
+      </div>
+  </div>
+
+
+  <!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+  <div class="containeritmis">
+  <label class="labeltopic">ITMIS Code</label>
+  </div>
+
+  <div class="containeritmis">
+    <div class="input-container">
+      <label>Fund</label>
+      <textarea type="text" id="result6" rows="1" cols="6" readonly></textarea>
+    </div>
+
+    &nbsp;<p style="font-size:20px">/</p>&nbsp;
+
+    <div class="input-container">
+      <label>Financing Source</label>
+      <textarea type="text" id="result7" rows="1" cols="16" readonly></textarea>
+    </div>
+
+    &nbsp;<p style="font-size:20px">/</p>&nbsp;
+
+    <div class="input-container">
+      <label>Division</label>
+      <textarea type="text" id="result8" rows="1" cols="10" readonly></textarea>
+    </div>
+
+    &nbsp;<p style="font-size:20px">/</p>&nbsp;
+
+    <div class="input-container">
+      <label>Sub Project</label>
+      <textarea type="text" id="result9" rows="1" cols="10" readonly></textarea>
+    </div>
+
+    &nbsp;<p style="font-size:20px">/</p>&nbsp;
+
+    <div class="input-container">
+      <label>Detail</label>
+      <textarea type="text" id="result10" rows="1" cols="10" readonly></textarea>
+    </div>
+  </div>
+   <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <div class="container">
+            <button onclick="concatenateValuesrev()">Convert</button>
+ </div>
+ 
+ <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div class="container">
+<textarea class="textareafinal" type="text" id="finalrev" rows="2" cols="40" readonly></textarea> 
+</div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
+<div class="container">
+<button class="buttoncpy"  id="copyButtonrev">Copy Coding Block</button>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
+   <script>
+        function concatenateValuesrev() {
+            var input9 = document.getElementById("input9");
+            var input10 = document.getElementById("input10");
+            var input11 = document.getElementById("input11");
+            var input12 = document.getElementById("input12");
+            var input13 = document.getElementById("input13");
+            var minLength9 = 3;
+            var minLength10 = 4;
+            var minLength11 = 2;
+            var minLength12 = 2;
+            var minLength13 = 4;
+          
+
+            if (input9.value.length < minLength9) {
+                    swal("Head must be " + minLength9 + " digit long");
+                }
+            if (input10.value.length < minLength10) {
+                    swal("Revenue Code Error");
+                }
+            if (input11.value.length < minLength11) {
+                    swal("Revenue Code Error");
+                }
+            if (input12.value.length < minLength12) {
+                    swal("Revenue Code Error");
+                }        
+             if (input13.value.length < minLength13) {
+                    swal("Mid/Sub Office must be " + minLength13 + " digit long");
+                }    
+
+            else {
+                
+            var value9 = document.getElementById("input9").value;
+            var value10 = document.getElementById("input10").value;
+            var value11 = document.getElementById("input11").value;
+            var value12 = document.getElementById("input12").value;
+            var value13 = document.getElementById("input13").value;
+            
+
+            var results6 = "01";
+            document.getElementById("result6").textContent = results6;
+
+            var results7 = "11";
+            document.getElementById("result7").textContent = results7;
+
+            var results8 = value9 + value13;
+            document.getElementById("result8").textContent = results8;
+
+            var results9 = "000000000";
+            document.getElementById("result9").textContent = results9;
+
+            var value10r = value10.slice(0, 1) + value10.slice(3);
+
+            var results10 = "1" + value10r + value11 + "0" + value12;
+            document.getElementById("result10").textContent = results10;
+
+            var allsgmtrev = results6 + "/" + results7 + "/" + results8 + "/" + results9 + "/" + results10;
+            document.getElementById("finalrev").textContent = allsgmtrev;
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById("copyButtonrev").addEventListener("click", function() {
+            var textArea = document.getElementById("finalrev");
+
+            // Select the text in the textarea
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+
+            // Deselect the text
+            textArea.setSelectionRange(0, 0);
+        });
+    </script>
+
+</body>
+</html>
